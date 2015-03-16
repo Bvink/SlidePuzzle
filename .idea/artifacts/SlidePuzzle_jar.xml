@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SlidePuzzle:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SlidePuzzle_jar</output-path>
+    <root id="archive" name="SlidePuzzle.jar">
+      <element id="module-output" name="SlidePuzzle" />
+    </root>
+  </artifact>
+</component>
