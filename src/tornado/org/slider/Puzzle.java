@@ -75,7 +75,7 @@ class Puzzle implements MouseListener {
         }
         int x2 = square[num].getX();
         int y2 = square[num].getY();
-        if ((Math.abs(x - x2) < screenSize[0] / tileSize[1] && Math.abs(x - x2) > 1 && y == y2) || (Math.abs(y - y2) < screenSize[1] / tileSize[0] && Math.abs(y - y2) > 1 && x == x2)) {
+        if ((Math.abs(x - x2) < screenSize[0] / tileSize[0] && Math.abs(x - x2) > 1 && y == y2) || (Math.abs(y - y2) < screenSize[1] / tileSize[1] && Math.abs(y - y2) > 1 && x == x2)) {
             e.getComponent().setBackground(Color.WHITE);
             square[num].setNumber(((Tile) e.getComponent()).getNumber());
             ((Tile) e.getComponent()).setNumber(0);
