@@ -59,7 +59,7 @@ class Puzzle implements MouseListener {
 
     public void mouseExited(MouseEvent e) {
         if (e.getComponent().getBackground() != Color.WHITE) {
-            e.getComponent().setBackground(Color.darkGray);
+            e.getComponent().setBackground(Color.DARK_GRAY);
         }
     }
 
@@ -75,18 +75,29 @@ class Puzzle implements MouseListener {
         }
         int x2 = square[num].getX();
         int y2 = square[num].getY();
-        if ((Math.abs(x - x2) < screenSize[0] / tileSize[0] && Math.abs(x - x2) > 1 && y == y2) || (Math.abs(y - y2) < screenSize[1] / tileSize[1] && Math.abs(y - y2) > 1 && x == x2)) {
+        if (calcHorizontalMove(x, x2, y, y2) || calcVerticalMove(x, x2, y, y2)) {
             e.getComponent().setBackground(Color.WHITE);
             square[num].setNumber(((Tile) e.getComponent()).getNumber());
             ((Tile) e.getComponent()).setNumber(0);
-            square[num].setBackground(Color.darkGray);
+            square[num].setBackground(Color.DARK_GRAY);
         }
 
         for (int i = 0; i < fieldSize; i++) {
             state[i] = square[i].getNumber();
         }
-
         checkWin(gameState(state));
+    }
+
+    private boolean calcHorizontalMove(int x, int x2, int y, int y2) {
+        return (Math.abs(x - x2) < screenSize[0] / tileSize[0]
+                && Math.abs(x - x2) > 1
+                && y == y2);
+    }
+
+    private boolean calcVerticalMove(int x, int x2, int y, int y2) {
+        return (Math.abs(y - y2) < screenSize[1] / tileSize[1]
+                && Math.abs(y - y2) > 1
+                && x == x2);
     }
 
     private String gameState(int[] state) {
@@ -100,7 +111,10 @@ class Puzzle implements MouseListener {
 
     private void checkWin(String s) {
         if (s.equals(settings.getWinState())) {
-            int choice = JOptionPane.showConfirmDialog(null, Constants.WIN_MESSAGE, Constants.WIN_TITLE, JOptionPane.YES_NO_OPTION);
+            int choice = JOptionPane.showConfirmDialog(null,
+                    Constants.WIN_MESSAGE,
+                    Constants.WIN_TITLE,
+                    JOptionPane.YES_NO_OPTION);
             switch (choice) {
                 case JOptionPane.YES_OPTION:
                     frame.setVisible(false);
