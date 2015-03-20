@@ -1,11 +1,15 @@
 package tornado.org.slider;
 
+import tornado.org.slider.constants.Constants;
 import tornado.org.slider.settings.Settings;
 
 public class Main {
 
     public static void main(String[] args) {
         if (args.length == 4) {
+            if (Integer.parseInt(args[1]) < 3 || Integer.parseInt(args[1]) < 3) {
+                System.out.println(Constants.GENERATE_ERROR);
+            }
             Settings settings = new Settings();
             settings.setTileSize(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
             settings.setScreenSize(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
@@ -13,12 +17,9 @@ public class Main {
             Puzzle puzzle = new Puzzle();
             puzzle.start(settings);
         } else {
-            System.out.println("Not enough arguments!");
-            System.out.println("Please give;");
-            System.out.println("Amount of vertical squares");
-            System.out.println("Amount of horizontal squares");
-            System.out.println("Screen Height");
-            System.out.println("Screen width");
+            for (String s : Constants.STARTUP_ERROR) {
+                System.out.println(s);
+            }
         }
     }
 }
